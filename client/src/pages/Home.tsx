@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Bot,
   Calendar,
   CheckCircle2,
   Clock,
@@ -77,74 +76,228 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-10 sm:gap-12 pb-12">
-      {/* 1. Large Immersive 3D Spatial Hero Composition */}
-      <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 text-white p-6 sm:p-10 shadow-2xl">
-        {/* Ambient Gradient Orbs */}
+      {/* 1. Premium Immersive Hero — "Good afternoon. Welcome to fAImily" */}
+      <div
+        className="relative overflow-hidden text-white"
+        style={{
+          borderRadius: "28px",
+          boxShadow: "0 0 0 1px rgba(99,102,241,0.25), 0 8px 64px rgba(30,10,80,0.6), 0 2px 12px rgba(0,0,0,0.5)",
+        }}
+      >
+        {/* ── Layer 0: Deep navy base ── */}
         <div
-          className="pointer-events-none absolute -right-24 -top-24 h-[30rem] w-[30rem] rounded-full opacity-40 blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(99, 102, 241, 0.65), transparent 70%)" }}
-        />
-        <div
-          className="pointer-events-none absolute -left-24 -bottom-24 h-[30rem] w-[30rem] rounded-full opacity-30 blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(168, 85, 247, 0.55), transparent 70%)" }}
+          className="absolute inset-0"
+          style={{
+            background: "linear-gradient(135deg, #0a0820 0%, #0d0b2e 40%, #0b1230 100%)",
+          }}
         />
 
-        <div className="relative z-10 flex flex-col-reverse lg:flex-row lg:items-center justify-between gap-8">
-          <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-indigo-950/90 px-3.5 py-1 text-xs font-bold text-indigo-300 border border-indigo-700/60 mb-4 shadow-sm backdrop-blur-md">
-              <Bot size={14} className="text-indigo-400" />
-              <span>FAMILY AI WORKSPACE · ENTERPRISE INTELLIGENCE</span>
+        {/* ── Layer 1: Large blurred ambient glow orbs ── */}
+        <div
+          className="pointer-events-none absolute rounded-full blur-[120px]"
+          style={{
+            width: "60%",
+            height: "180%",
+            top: "-40%",
+            right: "-10%",
+            background: "radial-gradient(circle, rgba(99,102,241,0.45) 0%, rgba(139,92,246,0.25) 40%, transparent 70%)",
+            animation: "heroGlow 6s ease-in-out infinite alternate",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute rounded-full blur-[100px]"
+          style={{
+            width: "50%",
+            height: "120%",
+            bottom: "-30%",
+            left: "-5%",
+            background: "radial-gradient(circle, rgba(6,182,212,0.15) 0%, rgba(79,70,229,0.12) 50%, transparent 70%)",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute rounded-full blur-[80px]"
+          style={{
+            width: "30%",
+            height: "80%",
+            top: "10%",
+            left: "20%",
+            background: "radial-gradient(circle, rgba(167,139,250,0.12) 0%, transparent 70%)",
+          }}
+        />
+
+        {/* ── Layer 2: Subtle grid/noise texture overlay ── */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.025]"
+          style={{
+            backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 0.5px, transparent 0.5px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+
+        {/* ── Layer 3: Geometric orbit ring (decorative) ── */}
+        <div
+          className="pointer-events-none absolute hidden lg:block"
+          style={{
+            right: "6%",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: "340px",
+            height: "340px",
+            border: "1px solid rgba(139,92,246,0.18)",
+            borderRadius: "50%",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute hidden lg:block"
+          style={{
+            right: "10%",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: "230px",
+            height: "230px",
+            border: "1px solid rgba(99,102,241,0.14)",
+            borderRadius: "50%",
+          }}
+        />
+
+        {/* ── Content ── */}
+        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 p-6 sm:p-10 lg:p-12">
+
+          {/* LEFT: Editorial Typography — 55% */}
+          <div className="flex-1 min-w-0">
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-950/60 px-3.5 py-1 backdrop-blur-md mb-5">
+              <div className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-pulse" />
+              <span className="text-[11px] font-bold tracking-widest text-indigo-300 uppercase">Saasta Software Services</span>
             </div>
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              One intelligent workspace for your entire family.
+
+            {/* Main heading — preserve exact wording, stylise "fAImily" */}
+            <h1 className="font-display leading-tight tracking-tight">
+              <span className="block text-xl sm:text-2xl font-semibold text-slate-300 mb-1">Good afternoon.</span>
+              <span className="block text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white">
+                Welcome to{" "}
+                <span
+                  style={{
+                    background: "linear-gradient(100deg, #a78bfa 0%, #38bdf8 60%, #818cf8 100%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  fAImily
+                </span>
+              </span>
             </h1>
-            <p className="mt-3.5 text-xs sm:text-sm leading-relaxed text-slate-300 font-normal">
-              Unified multi-agent spatial platform connecting academic tutoring, sales outreach automation, cash flow analytics, and health planning.
+
+            {/* Sub-description — preserve exact wording */}
+            <p className="mt-4 max-w-lg text-sm sm:text-base leading-relaxed text-slate-400">
+              Eight helpers for your family — for school, for work, and for everyday life.{" "}
+              <span className="text-slate-300 font-medium">Pick one to begin.</span>
             </p>
 
-            <div className="mt-7 flex flex-wrap items-center gap-4">
-              <a
-                href="#command-center"
-                className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 px-5 py-3 text-xs sm:text-sm font-bold text-white transition-all shadow-lg shadow-indigo-600/30 cursor-pointer"
-              >
-                <span>Launch Family Workspace</span>
-                <ArrowRight size={15} />
-              </a>
-              <div className="flex items-center gap-4 border-l border-slate-700/80 pl-4 text-xs text-slate-400">
-                <span className="flex items-center gap-1.5 font-medium text-emerald-400">
-                  <ShieldCheck size={16} /> 100% Operational
-                </span>
-                <span className="flex items-center gap-1.5 font-medium text-indigo-300">
-                  <Cpu size={16} /> 8 Active Engines
-                </span>
+            {/* Status row */}
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              {/* Live indicator chip */}
+              <div className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md px-3.5 py-2 text-xs font-semibold text-slate-200">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>8 AI Helpers · Ready</span>
+              </div>
+              <div className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md px-3.5 py-2 text-xs font-semibold text-slate-200">
+                <ShieldCheck size={14} className="text-indigo-400" />
+                <span>Zero Data Retention</span>
+              </div>
+              <div className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md px-3.5 py-2 text-xs font-semibold text-slate-200">
+                <Cpu size={14} className="text-violet-400" />
+                <span>Live AI · No Canned Answers</span>
               </div>
             </div>
           </div>
 
-          {/* 3D Spatial Multi-Layer Visual Composition */}
-          <div className="relative flex shrink-0 items-center justify-center lg:justify-end">
-            {/* Suspended 3D AI Assistant Avatar */}
+          {/* RIGHT: 3D Layered Visual Composition — 45% */}
+          <div className="relative shrink-0 flex items-center justify-center w-full lg:w-auto lg:min-w-[360px]">
+            {/* Central 3D AI Avatar — Layer 2 */}
             <div className="relative group">
-              <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 opacity-40 blur-2xl transition-all duration-500 group-hover:opacity-70" />
-              <img
-                src={hero3d}
-                alt="Faimily Spatial 3D AI Avatar"
-                className="relative h-56 sm:h-64 lg:h-72 w-auto object-contain animate-float-slow drop-shadow-2xl transition-transform duration-500 hover:scale-105"
+              {/* Glow halo behind avatar */}
+              <div
+                className="absolute inset-0 rounded-full blur-3xl opacity-60 transition-opacity duration-700 group-hover:opacity-90"
+                style={{
+                  background: "radial-gradient(circle, rgba(139,92,246,0.7) 0%, rgba(99,102,241,0.4) 40%, transparent 70%)",
+                }}
               />
 
-              {/* Floating Spatial Z-Level Glass Status Chips */}
-              <div className="absolute -left-6 top-4 rounded-xl bg-slate-900/90 border border-slate-700/80 p-2.5 shadow-xl backdrop-blur-md hidden sm:flex items-center gap-2 text-xs text-white">
-                <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Ananya: 92/100 Graded Socratic Check</span>
+              {/* 3D Avatar Image */}
+              <img
+                src={hero3d}
+                alt="Faimily AI Family Intelligence Hub"
+                className="relative h-52 sm:h-64 lg:h-72 w-auto object-contain drop-shadow-2xl"
+                style={{ animation: "heroBobble 5s ease-in-out infinite" }}
+              />
+
+              {/* ── Layer 3: Floating Glass Status Chips ── */}
+
+              {/* Chip 1: Learning activity — top-left */}
+              <div
+                className="absolute -left-4 sm:-left-10 top-4 hidden sm:flex items-center gap-2.5 rounded-2xl border border-white/10 bg-slate-900/80 backdrop-blur-xl px-3 py-2.5 shadow-2xl text-xs text-white"
+                style={{ animation: "floatA 4s ease-in-out infinite" }}
+              >
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/20 border border-blue-400/30">
+                  <GraduationCap size={14} className="text-blue-300" />
+                </div>
+                <div>
+                  <p className="font-bold text-white leading-none">Study Buddy</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">Active · Photosynthesis</p>
+                </div>
               </div>
 
-              <div className="absolute -right-4 bottom-6 rounded-xl bg-slate-900/90 border border-slate-700/80 p-2.5 shadow-xl backdrop-blur-md hidden sm:flex items-center gap-2 text-xs text-white">
-                <TrendingUp size={14} className="text-amber-400" />
-                <span>Rahul: ₹23,500 Net Savings</span>
+              {/* Chip 2: Finance — bottom-right */}
+              <div
+                className="absolute -right-4 sm:-right-8 bottom-8 hidden sm:flex items-center gap-2.5 rounded-2xl border border-white/10 bg-slate-900/80 backdrop-blur-xl px-3 py-2.5 shadow-2xl text-xs text-white"
+                style={{ animation: "floatB 5.5s ease-in-out infinite" }}
+              >
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-amber-500/20 border border-amber-400/30">
+                  <TrendingUp size={14} className="text-amber-300" />
+                </div>
+                <div>
+                  <p className="font-bold text-white leading-none">Finance Coach</p>
+                  <p className="text-[10px] text-slate-400 mt-0.5">₹23,500 Net Savings</p>
+                </div>
+              </div>
+
+              {/* Chip 3: Live status — top-right */}
+              <div
+                className="absolute -right-2 sm:-right-6 top-2 hidden sm:flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-slate-900/80 backdrop-blur-xl px-2.5 py-1.5 shadow-xl text-[10px] font-bold text-emerald-300"
+                style={{ animation: "floatC 3.5s ease-in-out infinite" }}
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>All Systems Live</span>
               </div>
             </div>
           </div>
         </div>
+
+        {/* ── CSS keyframes injected inline via style tag ── */}
+        <style>{`
+          @keyframes heroBobble {
+            0%, 100% { transform: translateY(0px); }
+            50%       { transform: translateY(-10px); }
+          }
+          @keyframes heroGlow {
+            0%   { opacity: 0.35; }
+            100% { opacity: 0.55; }
+          }
+          @keyframes floatA {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50%       { transform: translateY(-6px) translateX(2px); }
+          }
+          @keyframes floatB {
+            0%, 100% { transform: translateY(0px); }
+            50%       { transform: translateY(8px); }
+          }
+          @keyframes floatC {
+            0%, 100% { transform: translateY(0px); }
+            50%       { transform: translateY(-4px); }
+          }
+        `}</style>
       </div>
 
       {/* 2. AI Command Center Section */}
