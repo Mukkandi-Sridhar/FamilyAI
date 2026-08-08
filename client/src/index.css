@@ -1,122 +1,97 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", ui-sans-serif, system-ui, Helvetica, Arial, sans-serif;
-  --font-display: "Sora", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", ui-sans-serif, system-ui, sans-serif;
 
-  /* Soft lavender canvas, gradient mesh lives on body */
-  --color-bg: #f4f2fb;
-  --color-canvas: #f4f2fb;
+  /* Premium SaaS canvas & ambient surfaces */
+  --color-bg: #f8fafc;
+  --color-canvas: #f8fafc;
 
-  /* Glass surfaces — translucent, blurred against the gradient mesh behind them */
-  --color-surface: rgba(255, 255, 255, 0.74);
+  /* Clean enterprise cards & glass surfaces */
+  --color-surface: #ffffff;
   --color-surface-solid: #ffffff;
-  --color-surface-2: rgba(255, 255, 255, 0.5);
-  --color-surface-hover: rgba(255, 255, 255, 0.85);
-  --color-glass-border: rgba(255, 255, 255, 0.65);
-  --color-border: rgba(40, 24, 78, 0.09);
-  --color-border-soft: rgba(40, 24, 78, 0.06);
+  --color-surface-2: #f1f5f9;
+  --color-surface-hover: #f8fafc;
+  --color-glass-border: #e2e8f0;
+  --color-border: #e2e8f0;
+  --color-border-soft: #f1f5f9;
 
-  --color-text: #201a33;
-  --color-text-dim: #6c6383;
-  --color-text-faint: #9a92ac;
+  /* High contrast readable typography */
+  --color-text: #0f172a;
+  --color-text-dim: #475569;
+  --color-text-faint: #94a3b8;
 
-  /* Bold violet-to-pink brand accent */
-  --color-brand: #7c4fe0;
-  --color-brand-2: #e0529c;
-  --color-brand-soft: #f1eafc;
+  /* Professional Enterprise Indigo brand accent */
+  --color-brand: #4f46e5;
+  --color-brand-2: #4338ca;
+  --color-brand-soft: #eef2ff;
 
-  --color-recipe: #1f9d63;
-  --color-recipe-soft: #e6f7ee;
-  --color-tutor: #3568f2;
-  --color-tutor-soft: #e9eefe;
-  --color-finance: #d97e17;
-  --color-finance-soft: #fcf0dd;
+  /* Domain-specific accents */
+  --color-recipe: #059669;
+  --color-recipe-soft: #ecfdf5;
+  --color-tutor: #2563eb;
+  --color-tutor-soft: #eff6ff;
+  --color-finance: #d97706;
+  --color-finance-soft: #fffbeb;
 
-  --color-homework: #8b3ce8;
-  --color-homework-soft: #f2e9fd;
-  --color-language: #e0405b;
-  --color-language-soft: #fdeaee;
-  --color-followup: #d63e94;
-  --color-followup-soft: #fdeaf5;
-  --color-document: #4c3ee0;
-  --color-document-soft: #ecebfc;
-  --color-support: #0e9c8d;
-  --color-support-soft: #e3f8f5;
-
-  --shadow-soft: 0 1px 1px rgba(72, 34, 148, 0.04), 0 4px 16px rgba(72, 34, 148, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.55);
-  --shadow-lifted: 0 6px 16px rgba(72, 34, 148, 0.1), 0 20px 40px rgba(72, 34, 148, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.65);
-  --shadow-glow: 0 8px 24px rgba(124, 79, 224, 0.25);
+  --color-homework: #7c3aed;
+  --color-homework-soft: #f5f3ff;
+  --color-language: #e11d48;
+  --color-language-soft: #fff1f2;
+  --color-followup: #db2777;
+  --color-followup-soft: #fdf2f8;
+  --color-document: #4f46e5;
+  --color-document-soft: #eef2ff;
+  --color-support: #0d9488;
+  --color-support-soft: #f0fdfa;
 }
 
 html,
 body,
 #root {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
   margin: 0;
-  position: relative;
-  background-color: var(--color-canvas);
-  background-image:
-    radial-gradient(900px 620px at -5% -10%, rgba(124, 79, 224, 0.32), transparent 60%),
-    radial-gradient(800px 560px at 108% -5%, rgba(224, 82, 156, 0.26), transparent 60%),
-    radial-gradient(900px 700px at 50% 115%, rgba(84, 140, 245, 0.22), transparent 60%),
-    radial-gradient(600px 500px at 90% 60%, rgba(255, 196, 130, 0.18), transparent 60%);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  color: var(--color-text);
+  background-color: #f8fafc;
+  background-image: radial-gradient(#cbd5e1 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+  color: #0f172a;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle film-grain texture over the gradient mesh — the thing that keeps a
-   flat CSS gradient from reading as "generated" instead of designed. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.035;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
-
-#root {
-  position: relative;
-  z-index: 1;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-::selection {
-  background: color-mix(in srgb, var(--color-brand) 25%, transparent);
-}
-
+/* Custom smooth scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--color-text) 15%, transparent);
-  border-radius: 999px;
+  background: #cbd5e1;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: color-mix(in srgb, var(--color-text) 28%, transparent);
+  background: #94a3b8;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -124,13 +99,13 @@ body::before {
   }
 }
 .animate-fade-up {
-  animation: fade-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: fade-up 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes pop-in {
   from {
     opacity: 0;
-    transform: translateY(8px) scale(0.98);
+    transform: translateY(4px) scale(0.99);
   }
   to {
     opacity: 1;
@@ -138,5 +113,17 @@ body::before {
   }
 }
 .animate-pop-in {
-  animation: pop-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: pop-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+.animate-pulse-subtle {
+  animation: pulse-subtle 1.8s ease-in-out infinite;
 }
