@@ -5,7 +5,6 @@ import {
   Calendar,
   CheckCircle2,
   Clock,
-  Cpu,
   FileText,
   GraduationCap,
   Heart,
@@ -76,227 +75,176 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-10 sm:gap-12 pb-12">
-      {/* 1. Premium Immersive Hero — "Good afternoon. Welcome to fAImily" */}
+
+      {/* ── HERO: Compact Premium Product Header ~360px ── */}
       <div
         className="relative overflow-hidden text-white"
         style={{
-          borderRadius: "28px",
-          boxShadow: "0 0 0 1px rgba(99,102,241,0.25), 0 8px 64px rgba(30,10,80,0.6), 0 2px 12px rgba(0,0,0,0.5)",
+          borderRadius: "24px",
+          border: "1px solid rgba(99,102,241,0.2)",
+          boxShadow: "0 4px 40px rgba(15,5,50,0.5), 0 1px 8px rgba(0,0,0,0.4)",
         }}
       >
-        {/* ── Layer 0: Deep navy base ── */}
+        {/* Layer 0 — deep navy base */}
         <div
           className="absolute inset-0"
+          style={{ background: "linear-gradient(135deg,#090720 0%,#0c0a28 50%,#0a1028 100%)" }}
+        />
+
+        {/* Layer 1 — ambient violet glow right, cyan glow left */}
+        <div
+          className="pointer-events-none absolute"
           style={{
-            background: "linear-gradient(135deg, #0a0820 0%, #0d0b2e 40%, #0b1230 100%)",
+            right: "-8%", top: "-60%",
+            width: "55%", height: "220%",
+            borderRadius: "50%",
+            background: "radial-gradient(circle,rgba(109,40,217,0.3) 0%,rgba(99,102,241,0.15) 40%,transparent 70%)",
+            filter: "blur(70px)",
+            animation: "hglow 7s ease-in-out infinite alternate",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute"
+          style={{
+            left: "-5%", bottom: "-50%",
+            width: "40%", height: "160%",
+            borderRadius: "50%",
+            background: "radial-gradient(circle,rgba(6,182,212,0.1) 0%,transparent 70%)",
+            filter: "blur(60px)",
           }}
         />
 
-        {/* ── Layer 1: Large blurred ambient glow orbs ── */}
+        {/* Layer 2 — fine dot texture */}
         <div
-          className="pointer-events-none absolute rounded-full blur-[120px]"
+          className="pointer-events-none absolute inset-0"
           style={{
-            width: "60%",
-            height: "180%",
-            top: "-40%",
-            right: "-10%",
-            background: "radial-gradient(circle, rgba(99,102,241,0.45) 0%, rgba(139,92,246,0.25) 40%, transparent 70%)",
-            animation: "heroGlow 6s ease-in-out infinite alternate",
-          }}
-        />
-        <div
-          className="pointer-events-none absolute rounded-full blur-[100px]"
-          style={{
-            width: "50%",
-            height: "120%",
-            bottom: "-30%",
-            left: "-5%",
-            background: "radial-gradient(circle, rgba(6,182,212,0.15) 0%, rgba(79,70,229,0.12) 50%, transparent 70%)",
-          }}
-        />
-        <div
-          className="pointer-events-none absolute rounded-full blur-[80px]"
-          style={{
-            width: "30%",
-            height: "80%",
-            top: "10%",
-            left: "20%",
-            background: "radial-gradient(circle, rgba(167,139,250,0.12) 0%, transparent 70%)",
-          }}
-        />
-
-        {/* ── Layer 2: Subtle grid/noise texture overlay ── */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage: "radial-gradient(rgba(255,255,255,0.8) 0.5px, transparent 0.5px)",
+            backgroundImage: "radial-gradient(rgba(255,255,255,0.55) 0.6px,transparent 0.6px)",
             backgroundSize: "28px 28px",
+            opacity: 0.03,
           }}
         />
 
-        {/* ── Layer 3: Geometric orbit ring (decorative) ── */}
-        <div
-          className="pointer-events-none absolute hidden lg:block"
-          style={{
-            right: "6%",
-            top: "50%",
-            transform: "translateY(-50%)",
-            width: "340px",
-            height: "340px",
-            border: "1px solid rgba(139,92,246,0.18)",
-            borderRadius: "50%",
-          }}
-        />
-        <div
-          className="pointer-events-none absolute hidden lg:block"
-          style={{
-            right: "10%",
-            top: "50%",
-            transform: "translateY(-50%)",
-            width: "230px",
-            height: "230px",
-            border: "1px solid rgba(99,102,241,0.14)",
-            borderRadius: "50%",
-          }}
-        />
+        {/* Layer 3 — decorative orbit rings (desktop only) */}
+        {(["230px", "160px", "100px"] as const).map((sz, i) => (
+          <div
+            key={i}
+            className="pointer-events-none absolute hidden lg:block"
+            style={{
+              right: `calc(22% - ${parseInt(sz) / 2}px)`,
+              top: "50%",
+              transform: "translateY(-50%)",
+              width: sz, height: sz,
+              borderRadius: "50%",
+              border: `1px solid rgba(139,92,246,${[0.14, 0.10, 0.07][i]})`,
+              animation: `orbitSpin ${[40, 30, 22][i]}s linear infinite`,
+            }}
+          />
+        ))}
 
-        {/* ── Content ── */}
-        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-8 p-6 sm:p-10 lg:p-12">
+        {/* Main content — 55 / 45 two-column */}
+        <div className="relative z-10 flex flex-col lg:flex-row items-center gap-6 px-8 py-9 lg:px-10 lg:py-8">
 
-          {/* LEFT: Editorial Typography — 55% */}
-          <div className="flex-1 min-w-0">
+          {/* LEFT — typography */}
+          <div className="flex-1 min-w-0 max-w-[600px]">
             {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-950/60 px-3.5 py-1 backdrop-blur-md mb-5">
-              <div className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-pulse" />
-              <span className="text-[11px] font-bold tracking-widest text-indigo-300 uppercase">Saasta Software Services</span>
+            <div className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-indigo-600/25 bg-indigo-950/50 px-3 py-1 backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-pulse" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.12em] text-indigo-300">Saasta Software Services</span>
             </div>
 
-            {/* Main heading — preserve exact wording, stylise "fAImily" */}
-            <h1 className="font-display leading-tight tracking-tight">
-              <span className="block text-xl sm:text-2xl font-semibold text-slate-300 mb-1">Good afternoon.</span>
-              <span className="block text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white">
+            {/* Heading */}
+            <h1 className="font-display leading-[1.1] tracking-tight">
+              <span className="block text-[13px] font-medium text-slate-400 mb-0.5">Good afternoon.</span>
+              <span className="block text-[32px] sm:text-[38px] lg:text-[42px] font-bold text-white">
                 Welcome to{" "}
-                <span
-                  style={{
-                    background: "linear-gradient(100deg, #a78bfa 0%, #38bdf8 60%, #818cf8 100%)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
-                  }}
-                >
+                <span style={{
+                  background: "linear-gradient(110deg,#c4b5fd 0%,#67e8f9 55%,#818cf8 100%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                }}>
                   fAImily
                 </span>
               </span>
             </h1>
 
-            {/* Sub-description — preserve exact wording */}
-            <p className="mt-4 max-w-lg text-sm sm:text-base leading-relaxed text-slate-400">
+            {/* Description — exact wording */}
+            <p className="mt-3 text-[13.5px] leading-relaxed text-slate-400 max-w-md">
               Eight helpers for your family — for school, for work, and for everyday life.{" "}
-              <span className="text-slate-300 font-medium">Pick one to begin.</span>
+              <span className="text-slate-300">Pick one to begin.</span>
             </p>
 
-            {/* Status row */}
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              {/* Live indicator chip */}
-              <div className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md px-3.5 py-2 text-xs font-semibold text-slate-200">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>8 AI Helpers · Ready</span>
-              </div>
-              <div className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md px-3.5 py-2 text-xs font-semibold text-slate-200">
-                <ShieldCheck size={14} className="text-indigo-400" />
-                <span>Zero Data Retention</span>
-              </div>
-              <div className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md px-3.5 py-2 text-xs font-semibold text-slate-200">
-                <Cpu size={14} className="text-violet-400" />
-                <span>Live AI · No Canned Answers</span>
-              </div>
+            {/* Single elegant status line */}
+            <div className="mt-5 flex items-center gap-2 text-[11px] text-slate-500 font-medium flex-wrap">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-emerald-400 font-semibold">8 AI helpers ready</span>
+              <span className="text-slate-700">·</span>
+              <span>Secure family workspace</span>
+              <span className="text-slate-700">·</span>
+              <span>AI-powered · Zero retention</span>
             </div>
           </div>
 
-          {/* RIGHT: 3D Layered Visual Composition — 45% */}
-          <div className="relative shrink-0 flex items-center justify-center w-full lg:w-auto lg:min-w-[360px]">
-            {/* Central 3D AI Avatar — Layer 2 */}
-            <div className="relative group">
-              {/* Glow halo behind avatar */}
-              <div
-                className="absolute inset-0 rounded-full blur-3xl opacity-60 transition-opacity duration-700 group-hover:opacity-90"
-                style={{
-                  background: "radial-gradient(circle, rgba(139,92,246,0.7) 0%, rgba(99,102,241,0.4) 40%, transparent 70%)",
-                }}
-              />
+          {/* RIGHT — compact 3D visual, fixed 380px wide on desktop */}
+          <div className="relative shrink-0 flex items-center justify-center w-full lg:w-[380px] lg:h-[280px]">
 
-              {/* 3D Avatar Image */}
-              <img
-                src={hero3d}
-                alt="Faimily AI Family Intelligence Hub"
-                className="relative h-52 sm:h-64 lg:h-72 w-auto object-contain drop-shadow-2xl"
-                style={{ animation: "heroBobble 5s ease-in-out infinite" }}
-              />
+            {/* Core violet glow halo */}
+            <div
+              className="absolute"
+              style={{
+                width: "200px", height: "200px",
+                borderRadius: "50%",
+                background: "radial-gradient(circle,rgba(139,92,246,0.55) 0%,rgba(99,102,241,0.2) 45%,transparent 70%)",
+                filter: "blur(32px)",
+                animation: "hglow 5s ease-in-out infinite alternate",
+              }}
+            />
 
-              {/* ── Layer 3: Floating Glass Status Chips ── */}
+            {/* AI Avatar — soft radial mask so it blends, no rectangular frame */}
+            <img
+              src={hero3d}
+              alt="Faimily AI"
+              className="relative z-10 h-44 sm:h-52 lg:h-56 w-auto object-contain"
+              style={{
+                animation: "hbob 5s ease-in-out infinite",
+                WebkitMaskImage: "radial-gradient(ellipse 80% 90% at 50% 50%,black 60%,transparent 100%)",
+                maskImage: "radial-gradient(ellipse 80% 90% at 50% 50%,black 60%,transparent 100%)",
+                filter: "drop-shadow(0 0 20px rgba(139,92,246,0.4))",
+              }}
+            />
 
-              {/* Chip 1: Learning activity — top-left */}
-              <div
-                className="absolute -left-4 sm:-left-10 top-4 hidden sm:flex items-center gap-2.5 rounded-2xl border border-white/10 bg-slate-900/80 backdrop-blur-xl px-3 py-2.5 shadow-2xl text-xs text-white"
-                style={{ animation: "floatA 4s ease-in-out infinite" }}
-              >
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/20 border border-blue-400/30">
-                  <GraduationCap size={14} className="text-blue-300" />
-                </div>
-                <div>
-                  <p className="font-bold text-white leading-none">Study Buddy</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">Active · Photosynthesis</p>
-                </div>
+            {/* Floating glass chip 1 — top-left, compact */}
+            <div
+              className="absolute left-0 top-4 hidden sm:flex items-center gap-2 rounded-xl border border-white/8 bg-slate-950/75 backdrop-blur-xl px-2.5 py-2 shadow-xl z-20"
+              style={{ animation: "hfa 4.5s ease-in-out infinite" }}
+            >
+              <div className="h-6 w-6 shrink-0 rounded-lg bg-blue-500/15 border border-blue-400/20 flex items-center justify-center">
+                <GraduationCap size={12} className="text-blue-300" />
               </div>
-
-              {/* Chip 2: Finance — bottom-right */}
-              <div
-                className="absolute -right-4 sm:-right-8 bottom-8 hidden sm:flex items-center gap-2.5 rounded-2xl border border-white/10 bg-slate-900/80 backdrop-blur-xl px-3 py-2.5 shadow-2xl text-xs text-white"
-                style={{ animation: "floatB 5.5s ease-in-out infinite" }}
-              >
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-amber-500/20 border border-amber-400/30">
-                  <TrendingUp size={14} className="text-amber-300" />
-                </div>
-                <div>
-                  <p className="font-bold text-white leading-none">Finance Coach</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">₹23,500 Net Savings</p>
-                </div>
+              <div>
+                <p className="text-[10px] font-bold text-white leading-none">Study Buddy</p>
+                <p className="text-[9px] text-slate-500 mt-0.5">Active session</p>
               </div>
+            </div>
 
-              {/* Chip 3: Live status — top-right */}
-              <div
-                className="absolute -right-2 sm:-right-6 top-2 hidden sm:flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-slate-900/80 backdrop-blur-xl px-2.5 py-1.5 shadow-xl text-[10px] font-bold text-emerald-300"
-                style={{ animation: "floatC 3.5s ease-in-out infinite" }}
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span>All Systems Live</span>
-              </div>
+            {/* Floating glass chip 2 — bottom-right, pill */}
+            <div
+              className="absolute right-0 bottom-4 hidden sm:flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-slate-950/75 backdrop-blur-xl px-3 py-1.5 shadow-xl z-20"
+              style={{ animation: "hfb 5.5s ease-in-out infinite" }}
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[10px] font-semibold text-emerald-300">All systems live</span>
             </div>
           </div>
         </div>
 
-        {/* ── CSS keyframes injected inline via style tag ── */}
+        {/* Keyframes */}
         <style>{`
-          @keyframes heroBobble {
-            0%, 100% { transform: translateY(0px); }
-            50%       { transform: translateY(-10px); }
-          }
-          @keyframes heroGlow {
-            0%   { opacity: 0.35; }
-            100% { opacity: 0.55; }
-          }
-          @keyframes floatA {
-            0%, 100% { transform: translateY(0px) translateX(0px); }
-            50%       { transform: translateY(-6px) translateX(2px); }
-          }
-          @keyframes floatB {
-            0%, 100% { transform: translateY(0px); }
-            50%       { transform: translateY(8px); }
-          }
-          @keyframes floatC {
-            0%, 100% { transform: translateY(0px); }
-            50%       { transform: translateY(-4px); }
-          }
+          @keyframes hbob     { 0%,100%{transform:translateY(0)}    50%{transform:translateY(-8px)} }
+          @keyframes hglow    { 0%{opacity:.4}                      100%{opacity:.65} }
+          @keyframes hfa      { 0%,100%{transform:translateY(0)}    50%{transform:translateY(-5px)} }
+          @keyframes hfb      { 0%,100%{transform:translateY(0)}    50%{transform:translateY(5px)} }
+          @keyframes orbitSpin{ from{transform:translateY(-50%) rotate(0deg)} to{transform:translateY(-50%) rotate(360deg)} }
         `}</style>
       </div>
 
@@ -375,8 +323,6 @@ export default function Home() {
                   <p className="text-[11px] font-semibold text-indigo-600">Class 8 Student · CBSE</p>
                 </div>
               </div>
-
-              {/* Data Visualization Ring: 92/100 Score */}
               <div className="flex flex-col items-center">
                 <span className="text-xs font-extrabold text-emerald-600">92/100</span>
                 <span className="text-[9px] font-bold text-slate-400 uppercase">Socratic</span>
@@ -412,8 +358,6 @@ export default function Home() {
                   <p className="text-[11px] font-semibold text-amber-700">Parent · Finance &amp; Sales</p>
                 </div>
               </div>
-
-              {/* Data Visualization Ring: Savings */}
               <div className="flex flex-col items-center">
                 <span className="text-xs font-extrabold text-amber-600">₹23.5k</span>
                 <span className="text-[9px] font-bold text-slate-400 uppercase">Savings</span>
@@ -449,8 +393,6 @@ export default function Home() {
                   <p className="text-[11px] font-semibold text-rose-700">Learner · Spanish</p>
                 </div>
               </div>
-
-              {/* Data Visualization Ring: Streak */}
               <div className="flex flex-col items-center">
                 <span className="text-xs font-extrabold text-rose-600">7 Days</span>
                 <span className="text-[9px] font-bold text-slate-400 uppercase">Streak 🔥</span>
@@ -540,7 +482,6 @@ export default function Home() {
         <div className="relative flex flex-col gap-6 pl-4 sm:pl-6 border-l-2 border-slate-100">
           {TIMELINE_EVENTS.map((ev, i) => (
             <div key={i} className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              {/* Timeline Dot */}
               <div className="absolute -left-[23px] sm:-left-[31px] top-1 flex h-4 w-4 items-center justify-center rounded-full bg-indigo-600 ring-4 ring-white" />
 
               <div>
@@ -568,7 +509,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 6. Grouped Assistant Workspace Suites (No Uniform Card Overload!) */}
+      {/* 6. Grouped Assistant Workspace Suites */}
       <div className="flex flex-col gap-10">
         {/* Category Filter Pills */}
         <div className="flex overflow-x-auto no-scrollbar gap-1.5 p-1 rounded-xl bg-slate-200/60 border border-slate-200 self-start">
